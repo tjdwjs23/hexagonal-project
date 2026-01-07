@@ -16,25 +16,24 @@ Architecture: Hexagonal Architecture (Ports and Adapters)
 
 📂 Project Structure
 패키지 구조는 기술적인 계층이 아닌 아키텍처의 의도를 명확히 드러내도록 구성되었습니다.
-
-Plaintext
-
 demo.hexagonal.hexagonalback
-├── 📂 adapter               # [Infra] 외부 세계와 소통하는 어댑터
-│   ├── 📂 in                # Driving Adapter (요청을 받아들이는 곳)
-│   │   └── 📂 web           # Web Controller, Web DTO
-│   └── 📂 out               # Driven Adapter (요청을 내보내는 곳)
-│       └── 📂 persistence   # JPA Entity, Repository Impl, Mapper
+├── 📂 adapter                 # [Infra] 외부 세계와 소통하는 어댑터
+│   ├── 📂 in                  # Driving Adapter (요청을 받아들이는 곳)
+│   │   └── 📂 web             # Web Controller, Web DTO
+│   └── 📂 out                 # Driven Adapter (요청을 내보내는 곳)
+│       └── 📂 persistence     # JPA Entity, Repository Impl, Mapper
 │
-├── 📂 application           # [App] 도메인과 어댑터를 연결하는 오케스트레이션
-│   ├── 📂 port              # 인터페이스 (Port) 정의
-│   │   ├── 📂 in            # UseCase Interface (Input Port)
-│   │   └── 📂 out           # Repository Interface (Output Port)
-│   └── 📂 service           # UseCase 구현체 (트랜잭션 관리, 흐름 제어)
+├── 📂 application             # [App] 도메인과 어댑터를 연결하는 오케스트레이션
+│   ├── 📂 port                # 인터페이스 (Port) 정의
+│   │   ├── 📂 in              # UseCase Interface (Input Port)
+│   │   └── 📂 out             # Repository Interface (Output Port)
+│   └── 📂 service             # UseCase 구현체 (트랜잭션 관리, 흐름 제어)
 │
-└── 📂 domain                # [Core] 외부 의존성이 전혀 없는 순수 비즈니스 로직
-├── 📂 exception         # 도메인 관련 예외
-└── 📂 model             # 핵심 도메인 모델 (POJO/POGO)
+└── 📂 domain                  # [Core] 외부 의존성이 전혀 없는 순수 비즈니스 로직
+├── 📂 exception           # 도메인 비즈니스 예외 (BoardException)
+└── 📂 model               # 핵심 도메인 모델 (Pure Kotlin Class)
+
+
 📐 Architecture Principles
 이 프로젝트는 헥사고날 아키텍처의 핵심 원칙을 절대적으로 준수합니다.
 
