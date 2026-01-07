@@ -46,11 +46,8 @@ class BoardService(
 
         // 2. 도메인 로직 실행 (내용 수정)
         // Board가 data class(immutable)라면 copy로 새 객체를 만듭니다.
-        // 만약 도메인 안에 `update()` 메서드를 만들어뒀다면 그걸 쓰세요.
-        val updatedBoard = existingBoard.copy(
-            title = command.title,
-            content = command.content
-        )
+        val updatedBoard = existingBoard.update(command.title, command.content)
+
 
         // 3. 변경된 객체 저장
         return boardRepositoryPort.save(updatedBoard)

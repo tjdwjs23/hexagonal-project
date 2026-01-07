@@ -10,7 +10,13 @@ interface CreateBoardUseCase {
 data class CreateBoardCommand(
     val title: String,
     val content: String
-)
+) {
+    init {
+        // 입력 모델의 유효성 검증 (Self-Validating)
+        require(title.isNotBlank()) { "Title must not be blank" }
+        require(content.length >= 10) { "Content must be at least 10 characters" }
+    }
+}
 
 // 2. 게시글 조회 유즈케이스
 interface GetBoardUseCase {
